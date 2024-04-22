@@ -1,0 +1,37 @@
+data attributes in javascript
+
+The data-* attributes is used to store custom data private to the page or application.
+
+The data-* attributes gives us the ability to embed custom data attributes on all HTML elements.
+
+The stored (custom) data can then be used in the page's JavaScript to create a more engaging user experience (without any Ajax calls or server-side database queries).
+
+The data-* attributes consist of two parts:
+
+The attribute name should not contain any uppercase letters, and must be at least one character long after the prefix "data-"
+The attribute value can be any string
+
+
+write about 3 string methods
+
+startswith method:-
+The startsWith() method returns true if a string starts with a specified string.
+
+Otherwise it returns false.
+
+The startsWith() method is case sensitive.
+
+endsWith method:-
+The endsWith() method returns true if a string ends with a specified string.
+
+Otherwise it returns false.
+
+The endsWith() method is case sensitive.
+
+includes method:-
+The includes() method returns true if a string contains a specified string.
+
+Otherwise it returns false.
+
+The includes() method is case sensitive.
+
