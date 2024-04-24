@@ -71,7 +71,9 @@ function delProduct() {
     let removeBtn = document.querySelectorAll(".del");
     removeBtn.forEach(function (el) {
         el.addEventListener("click", function (e) {
-            products.splice(parseInt(e.target.dataset.count), 1);
+            let copyWithoutSomeElements = products.slice(
+                parseInt(e.target.dataset.count)
+            );
             document.querySelector(`.${e.target.dataset.del}`).remove();
         });
     });
