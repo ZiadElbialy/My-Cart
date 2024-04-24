@@ -89,7 +89,9 @@ function addOrSub() {
     sub.forEach(function (ele) {
         ele.addEventListener("click", function (e) {
             let num = document.querySelector(`.${e.target.dataset.sub}`);
-            num.innerHTML = num.innerHTML -= 1;
+            if (num.innerHTML > 1) {
+                num.innerHTML = num.innerHTML -= 1;
+            }
         });
     });
 }
