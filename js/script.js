@@ -27,8 +27,8 @@ const products = [
     },
 ];
 function showData() {
-    if (products != "") {
-        for (i = 0; i <= products.length; i++) {
+    if (products !== "") {
+        for (i = 0; i <= products.length - 1; i++) {
             productsCont.innerHTML += `
                 <div class="product btn-${i}" id="${products[i].id}">
                     <div class="left">
@@ -44,9 +44,9 @@ function showData() {
                         </div>
                     </div>
                     <div class="right">
-                        <div class="remove-btn">
-                            <button data-del="btn-${i}">
-                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <div class="remove-btn" data-del="btn-${i}">
+                            <button class="del" data-count="${i}" data-del="btn-${i}">
+                                <svg data-count="${i}" data-del="btn-${i}" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <circle cx="24" cy="24" r="18" stroke="#33363F" stroke-width="2"/>
                                 <path d="M18.0002 29.9993L30.0002 17.9993" stroke="#33363F" stroke-width="2"/>
                                 <path d="M30 30L18 18" stroke="#33363F" stroke-width="2"/>
@@ -54,15 +54,43 @@ function showData() {
                             </button>
                         </div>
                         <div class="amount">
-                            <button class="sub">-</button>
-                            <div class="num">${products[i].amount}</div>
-                            <button class="add">+</button>
+                            <button class="sub" data-sub="btn-${i}-num">-</button>
+                            <div class="num btn-${i}-num">${products[i].amount}</div>
+                            <button class="add" data-add="btn-${i}-num">+</button>
                         </div>
                     </div>
                 </div>
             `;
         }
+        delProduct();
+        addOrSub();
     }
 }
 
+function delProduct() {
+    let removeBtn = document.querySelectorAll(".del");
+    removeBtn.forEach(function (el) {
+        el.addEventListener("click", function (e) {
+            products.splice(parseInt(e.target.dataset.count), 1);
+            document.querySelector(`.${e.target.dataset.del}`).remove();
+        });
+    });
+}
+
+function addOrSub() {
+    let sub = document.querySelectorAll(".sub");
+    let add = document.querySelectorAll(".add");
+    add.forEach(function (ele) {
+        ele.addEventListener("click", function (e) {
+            let num = document.querySelector(`.${e.target.dataset.add}`);
+            num.innerHTML = +num.innerHTML + 1;
+        });
+    });
+    sub.forEach(function (ele) {
+        ele.addEventListener("click", function (e) {
+            let num = document.querySelector(`.${e.target.dataset.sub}`);
+            num.innerHTML = num.innerHTML -= 1;
+        });
+    });
+}
 showData();
